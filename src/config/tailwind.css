@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+
+body {
+  @apply text-gray-800;
+}
+
+h1 {
+  @apply text-3xl font-bold;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-2xl;
+}
+
+h4 {
+  @apply text-xl;
+}
+
+h5 {
+  @apply text-lg;
+}
+
+h6 {
+  @apply tracking-widest uppercase;
+}
+
+@tailwind utilities;
