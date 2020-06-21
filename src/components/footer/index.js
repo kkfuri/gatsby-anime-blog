@@ -6,7 +6,7 @@ const Footer = () => (
     <div className="container mx-auto text-right">
       <code className="text-xs">
         feito com <FaHeart className="inline" /> por{" "}
-        <a href="https://github.com/kkfuri" target="_blank" rel="noopener">
+        <a href="https://github.com/kkfuri" target="_blank" rel="noreferrer noopener">
           @kkfuri
         </a>
       </code>

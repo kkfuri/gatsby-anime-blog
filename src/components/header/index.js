@@ -28,9 +28,11 @@ const Header = ({ minimalist, title, description }) => {
     <div>
       {minimalist && <ReturnArrow />}
       <div className="text-center">
-        <Link to="/" aria-label="Retonar para página inicial">
-          <h2 className={titleClasses}>{title}</h2>
-        </Link>
+        <h1 className={titleClasses}>
+          <Link to="/" aria-label="Retonar para página inicial">
+            {title}
+          </Link>
+        </h1>
         {description && <h5 className={subtitleClasses}>{description}</h5>}
       </div>
     </div>
