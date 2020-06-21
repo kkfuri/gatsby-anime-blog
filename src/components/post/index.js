@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import classnames from "classnames"
 import dayjs from "dayjs"
 
@@ -15,15 +16,17 @@ function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
   )
   return (
     <article className="flex flex-col">
-      <a href={slug} className="group hover:text-primary">
-        <img
-          className={classesCover}
-          style={{ height: featured && 680 }}
-          src={image}
-          alt={`Imagem do post ${title}`}
-        />
-        <h2 className={classesTitle}>{title}</h2>
-      </a>
+      <Link to={slug} aria-label="Ir para a página da publicação">
+        <div className="group hover:text-primary">
+          <img
+            className={classesCover}
+            style={{ height: featured && 680 }}
+            src={image}
+            alt={`Imagem do post ${title}`}
+          />
+          <h2 className={classesTitle}>{title}</h2>
+        </div>
+      </Link>
       <div className="flex flex-wrap items-center space-x-4">
         <div className="inline">
           {tags?.map(tag => (
