@@ -18,11 +18,14 @@
     "dayjs": "^1.8.28",
     "gatsby": "^2.23.3",
     "gatsby-plugin-postcss": "^2.3.4",
+    "gatsby-plugin-react-helmet": "^3.3.4",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.3.11",
     "gatsby-transformer-remark": "^2.8.16",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^3.10.0"
   },
   "devDependencies": {
     "prettier": "2.0.5",
