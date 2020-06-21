@@ -2,7 +2,7 @@
 @tailwind components;
 
 body {
-  @apply text-gray-800;
+  @apply text-gray-800 bg-gray-100;
 }
 
 h1 {
