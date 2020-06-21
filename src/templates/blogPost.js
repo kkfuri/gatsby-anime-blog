@@ -1,20 +1,28 @@
 import React from "react"
-import Layout from "../components/layout"
 import dayjs from "dayjs"
+
+import Layout from "../components/layout"
 
 function Template({ data }) {
   const { html, frontmatter } = data.markdownRemark
-  const { title, date } = frontmatter
+  const { title, date, image } = frontmatter
   return (
-    <Layout minimalist>
-      <div className="my-20 max-w-2xl mx-auto">
-        <div className="flex flex-col mb-8 md:flex-row items-center justify-between">
-          <h1 className="text-4xl font-normal font-display text-primary">
-            {title}
-          </h1>
-          <h5 className="text-2xl font-body lowercase font-light text-gray-600">
-            {dayjs(date).format("DD.MMMM.YYYY")}
-          </h5>
+    <Layout minimalist title={title}>
+      <div className="my-20 max-w-4xl mx-auto">
+        <div className="flex flex-col mb-8 justify-between">
+          <div className="relative rounded overflow-hidden">
+            <img
+              className="object-cover w-full h-64 md:h-auto"
+              src={image}
+              alt={`Imagem do post ${title}`}
+            />
+            <h5 className="text-xl lowercase font-body font-light text-gray-100 bg-black bg-opacity-50 absolute p-2 top-0 right-0">
+              {dayjs(date).format("DD MMMM YYYY")}
+            </h5>
+            <h1 className="text-5xl font-normal font-display rounded-sm text-gray-100 bg-black bg-opacity-50 absolute p-2 bottom-0">
+              {title}
+            </h1>
+          </div>
         </div>
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
@@ -29,6 +37,7 @@ export const query = graphql`
       frontmatter {
         title
         date
+        image
       }
     }
   }
