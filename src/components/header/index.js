@@ -1,9 +1,23 @@
 import React from "react"
 import classnames from "classnames"
+import { BsArrowLeft } from "react-icons/bs"
+import { Link } from "gatsby"
+
+const ReturnArrow = () => (
+  <Link
+    to="/"
+    aria-label="Retonar para página inicial"
+    title="Retornar para página inicial"
+  >
+    <div className="p-4 absolute duration-150 hover:text-primary">
+      <BsArrowLeft size="2em" />
+    </div>
+  </Link>
+)
 
 const Header = ({ minimalist, title, description }) => {
   const titleClasses = classnames(
-    "font-display font-normal tracking-wide text-gray-900 duration-400 leading-tight",
+    "font-display inline px-8 font-normal tracking-wide text-gray-900 duration-400 leading-tight",
     { "text-3xl": minimalist, "text-4xl md:text-6xl": !minimalist }
   )
   const subtitleClasses = classnames(
@@ -11,11 +25,14 @@ const Header = ({ minimalist, title, description }) => {
     { "text-xl": minimalist, "text-3xl": !minimalist }
   )
   return (
-    <div className="text-center">
-      <a href="/" aria-label="Retonar para página inicial">
-        <h2 className={titleClasses}>{title}</h2>
-      </a>
-      {description && <h5 className={subtitleClasses}>{description}</h5>}
+    <div>
+      {minimalist && <ReturnArrow />}
+      <div className="text-center">
+        <Link to="/" aria-label="Retonar para página inicial">
+          <h2 className={titleClasses}>{title}</h2>
+        </Link>
+        {description && <h5 className={subtitleClasses}>{description}</h5>}
+      </div>
     </div>
   )
 }
