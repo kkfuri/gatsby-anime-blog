@@ -2,8 +2,10 @@ import React from "react"
 import dayjs from "dayjs"
 
 import Layout from "../components/layout"
+import NavigatePost from "../components/navigatePost"
 
-function Template({ data }) {
+function Template({ data, pageContext }) {
+  console.log(pageContext)
   const { html, frontmatter } = data.markdownRemark
   const { title, date, image } = frontmatter
   return (
@@ -25,6 +27,19 @@ function Template({ data }) {
           </div>
         </div>
         <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+      <hr className="my-20 max-w-xl mx-auto" />
+      <div className="flex justify-between w-full mx-auto mb-20">
+        <div>
+          {pageContext.prev && (
+            <NavigatePost prev {...pageContext.prev.frontmatter} />
+          )}
+        </div>
+        <div>
+          {pageContext.next && (
+            <NavigatePost next {...pageContext.next.frontmatter} />
+          )}
+        </div>
       </div>
     </Layout>
   )
