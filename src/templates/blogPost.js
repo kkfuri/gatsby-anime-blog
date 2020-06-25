@@ -3,28 +3,34 @@ import dayjs from "dayjs"
 
 import Layout from "../components/layout"
 import NavigatePost from "../components/navigatePost"
+import Tag from "../components/tag"
 
 function Template({ data, pageContext }) {
   console.log(pageContext)
   const { html, frontmatter } = data.markdownRemark
-  const { title, date, image } = frontmatter
+  const { title, date, image, tags } = frontmatter
   return (
     <Layout minimalist title={title}>
       <div className="my-20 max-w-4xl mx-auto">
         <div className="flex flex-col mb-8 justify-between">
-          <div className="relative rounded overflow-hidden">
-            <img
-              className="object-cover w-full h-64 md:h-auto"
-              src={image}
-              alt={`Imagem do post ${title}`}
-            />
-            <h5 className="text-xl lowercase font-body font-light text-gray-100 bg-black bg-opacity-50 absolute p-2 top-0 right-0">
-              {dayjs(date).format("DD MMMM YYYY")}
+          <h1 className="text-4xl lg:text-5xl font-normal font-display text-center">
+            {title}
+          </h1>
+          <div className="flex justify-between items-center">
+            <div className="inline space-x-4">
+              {tags?.map(tag => (
+                <Tag>[{tag}]</Tag>
+              ))}
+            </div>
+            <h5 className="text-xs uppercase tracking-widest font-body">
+              {dayjs(date).format("DD . MMMM . YYYY")}
             </h5>
-            <h1 className="text-5xl font-normal font-display rounded-sm text-gray-100 bg-black bg-opacity-50 absolute p-2 bottom-0">
-              {title}
-            </h1>
           </div>
+          <img
+            className="object-cover rounded w-full h-64 md:h-auto mt-12"
+            src={image}
+            alt={`Imagem do post ${title}`}
+          />
         </div>
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
@@ -53,6 +59,7 @@ export const query = graphql`
         title
         date
         image
+        tags
       }
     }
   }
