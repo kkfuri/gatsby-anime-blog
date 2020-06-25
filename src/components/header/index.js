@@ -17,8 +17,8 @@ const ReturnArrow = () => (
 
 const Header = ({ minimalist, title, description }) => {
   const titleClasses = classnames(
-    "font-display inline px-8 font-normal tracking-wide text-gray-900 duration-400 leading-tight",
-    { "text-3xl": minimalist, "text-4xl md:text-6xl": !minimalist }
+    "flex font-display md:inline px-8 font-normal text-center justify-center tracking-wide text-gray-900 duration-400 leading-tight",
+    { "text-3xl": minimalist, "text-2xl md:text-3xl lg:text-6xl": !minimalist }
   )
   const subtitleClasses = classnames(
     "text-gray-600 font-body font-light lowercase tracking-tighter leading-none mt-1 duration-400",
