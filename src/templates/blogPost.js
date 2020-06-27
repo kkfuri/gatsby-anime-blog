@@ -19,7 +19,7 @@ function Template({ data, pageContext }) {
           <div className="flex justify-between items-center">
             <div className="inline space-x-4">
               {tags?.map(tag => (
-                <Tag>[{tag}]</Tag>
+                <Tag tag={tag} />
               ))}
             </div>
             <h5 className="text-xs uppercase tracking-widest font-body">

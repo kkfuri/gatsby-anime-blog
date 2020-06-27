@@ -10,17 +10,17 @@ function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
     "mt-2 text-3xl md:text-2xl leading-tight duration-150 font-display group-hover:text-primary",
     { "text-4xl md:text-6xl": featured }
   )
-  const classesCover = classnames(
-    "object-cover w-full h-64 rounded md:h-auto",
-    { block: showImg, "block xl:hidden": !showImg }
-  )
+  const classesCover = classnames("object-cover w-full rounded md:h-auto", {
+    block: showImg,
+    "block xl:hidden": !showImg,
+  })
   return (
     <article className="flex flex-col">
       <Link to={slug} aria-label="Ir para a página da publicação">
         <div className="group hover:text-primary">
           <img
             className={classesCover}
-            style={{ height: featured && 680 }}
+            style={{ height: featured ? 680 : 244 }}
             src={image}
             alt={`Imagem do post ${title}`}
           />
@@ -30,7 +30,7 @@ function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
       <div className="flex flex-wrap items-center space-x-4">
         <div className="inline">
           {tags?.map(tag => (
-            <Tag>[{tag}]</Tag>
+            <Tag tag={tag} />
           ))}
           <h6 className="inline ml-4 tracking-widest text-gray-600 font-body">
             {dayjs(date).format("DD.MM.YYYY")}
