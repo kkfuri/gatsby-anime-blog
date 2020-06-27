@@ -38,7 +38,17 @@ function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
         </div>
       </div>
       {!featured && (
-        <p className="flex-1 mt-2 cursor-default">{excerpt.slice(0, 200)}...</p>
+        <p
+          className="flex-1 mt-2 cursor-default"
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 4,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+          }}
+        >
+          {excerpt}
+        </p>
       )}
     </article>
   )
