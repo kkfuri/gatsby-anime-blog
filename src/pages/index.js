@@ -20,10 +20,10 @@ function Home({ data }) {
                 "mb-8 xl:grid xl:col-span-4 xl:grid-rows-1 xl:row-span-2 xl:mb-0": featuredPost,
                 "xl:col-span-2": index % 9 !== 0,
               })}
+              key={id}
             >
               <Post
                 featured={featuredPost}
-                key={id}
                 {...frontmatter}
                 showImg={[1, 2].includes(index % 9) || featuredPost}
               />

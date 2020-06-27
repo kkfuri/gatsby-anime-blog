@@ -30,7 +30,7 @@ function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
       <div className="flex flex-wrap items-center space-x-4">
         <div className="inline">
           {tags?.map(tag => (
-            <Tag tag={tag} />
+            <Tag tag={tag} key={tag} />
           ))}
           <h6 className="inline ml-4 tracking-widest text-gray-600 font-body">
             {dayjs(date).format("DD.MM.YYYY")}

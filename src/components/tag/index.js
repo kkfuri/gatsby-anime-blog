@@ -6,7 +6,7 @@ import stringToSlug from "../../utils/slugify"
 function Tag({ tag }) {
   const slug = stringToSlug(tag)
   return (
-    <Link href={`/tag/${slug}`}>
+    <Link to={`/tag/${slug}`}>
       <p className="inline mr-1 font-bold tracking-wider uppercase duration-75 cursor-pointer hover:text-primary-dark">
         [{tag}]
       </p>

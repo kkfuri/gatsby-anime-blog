@@ -1,12 +1,12 @@
 import React from "react"
 import dayjs from "dayjs"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import NavigatePost from "../components/navigatePost"
 import Tag from "../components/tag"
 
 function Template({ data, pageContext }) {
-  console.log(pageContext)
   const { html, frontmatter } = data.markdownRemark
   const { title, date, image, tags } = frontmatter
   return (

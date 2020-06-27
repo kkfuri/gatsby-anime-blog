@@ -1,6 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { StaticQuery } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
