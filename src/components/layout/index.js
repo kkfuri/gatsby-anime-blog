@@ -8,7 +8,7 @@ import SEO from "../seo"
 function Layout({ children, minimalist, ...props }) {
   return (
     <>
-      <div className="container px-4 mx-auto mt-12 min-h-screen">
+      <div className="flex flex-col container px-4 mx-auto mt-12 min-h-screen">
         <SEO {...props} />
         <StaticQuery
           query={query}
