@@ -34,7 +34,7 @@ function Template({ data, pageContext }) {
         </div>
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
-      <hr className="my-20 max-w-xl mx-auto" />
+      <hr className="my-20 h-2 w-full max-w-xl mx-auto" />
       <div className="flex justify-between w-full mx-auto mb-20">
         <div>
           {pageContext.prev && (
