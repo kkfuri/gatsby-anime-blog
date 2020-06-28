@@ -10,7 +10,14 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: true,
+        stripMetadata: true,
+        defaultQuality: 95,
+      },
+    },
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sitemap`,
     {
