@@ -8,13 +8,17 @@ function TagTemplate({ pageContext }) {
   return (
     <Layout minimalist title={tagName}>
       <div className="grid grid-cols-1 gap-4 my-20 md:gap-8 md:grid-cols-6">
-        {posts?.map(({ frontmatter }) => {
+        {posts?.map(({ image, frontmatter }) => {
           return (
             <div
               className="col-span-1 md:col-span-3 xl:col-span-2"
               key={frontmatter.slug}
             >
-              <Post {...frontmatter} showImg />
+              <Post
+                image={image.childImageSharp.fluid}
+                {...frontmatter}
+                showImg
+              />
             </div>
           )
         })}

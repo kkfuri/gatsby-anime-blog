@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import classnames from "classnames"
 import dayjs from "dayjs"
+import Img from "gatsby-image"
 
 import Tag from "../tag"
 
@@ -18,12 +19,15 @@ function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
     <article className="flex flex-col">
       <Link to={slug} aria-label="Ir para a página da publicação">
         <div className="group hover:text-primary">
-          <img
-            className={classesCover}
-            style={{ height: featured ? 680 : 244 }}
-            src={image}
-            alt={`Imagem do post ${title}`}
-          />
+          {image && (
+            <Img
+              fadeIn
+              fluid={image}
+              className={classesCover}
+              style={{ height: featured ? 680 : 244 }}
+              alt={`Imagem do post ${title}`}
+            />
+          )}
           <h2 className={classesTitle}>{title}</h2>
         </div>
       </Link>
@@ -32,7 +36,7 @@ function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
           {tags?.map(tag => (
             <Tag tag={tag} key={tag} />
           ))}
-          <h6 className="inline ml-4 tracking-widest text-gray-600 font-body">
+          <h6 className="inline ml-4 tracking-widest text-gray-800 font-body">
             {dayjs(date).format("DD.MM.YYYY")}
           </h6>
         </div>

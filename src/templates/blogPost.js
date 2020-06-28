@@ -1,14 +1,15 @@
 import React from "react"
 import dayjs from "dayjs"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import NavigatePost from "../components/navigatePost"
 import Tag from "../components/tag"
 
 function Template({ data, pageContext }) {
-  const { html, frontmatter } = data.markdownRemark
-  const { title, date, image, tags } = frontmatter
+  const { html, frontmatter, image } = data.markdownRemark
+  const { title, date, tags } = frontmatter
   return (
     <Layout minimalist title={title}>
       <div className="my-20 max-w-4xl mx-auto">
@@ -26,9 +27,10 @@ function Template({ data, pageContext }) {
               {dayjs(date).format("DD . MMMM . YYYY")}
             </h5>
           </div>
-          <img
+          <Img
+            fadeIn
+            fluid={image?.childImageSharp?.fluid}
             className="object-cover rounded w-full h-64 md:h-auto mt-12"
-            src={image}
             alt={`Imagem do post ${title}`}
           />
         </div>
@@ -38,12 +40,20 @@ function Template({ data, pageContext }) {
       <div className="flex justify-between w-full mx-auto mb-20">
         <div>
           {pageContext.prev && (
-            <NavigatePost prev {...pageContext.prev.frontmatter} />
+            <NavigatePost
+              prev
+              {...pageContext.prev.frontmatter}
+              image={pageContext.prev.image.childImageSharp?.fluid}
+            />
           )}
         </div>
         <div>
           {pageContext.next && (
-            <NavigatePost next {...pageContext.next.frontmatter} />
+            <NavigatePost
+              next
+              {...pageContext.next.frontmatter}
+              image={pageContext.next.image.childImageSharp?.fluid}
+            />
           )}
         </div>
       </div>
@@ -55,10 +65,16 @@ export const query = graphql`
   query($pathSlug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $pathSlug } }) {
       html
+      image {
+        childImageSharp {
+          fluid(maxWidth: 1600, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
       frontmatter {
         title
         date
-        image
         tags
       }
     }

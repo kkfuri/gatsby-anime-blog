@@ -24,6 +24,7 @@ function Home({ data }) {
             >
               <Post
                 featured={featuredPost}
+                image={edge.node?.image?.childImageSharp?.fluid}
                 {...frontmatter}
                 showImg={[1, 2].includes(index % 9) || featuredPost}
               />
@@ -46,13 +47,19 @@ export const query = graphql`
       edges {
         node {
           id
+          image {
+            childImageSharp {
+              fluid(maxWidth: 1200) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
           frontmatter {
             title
             slug
             date
             tags
             excerpt
-            image
           }
         }
       }

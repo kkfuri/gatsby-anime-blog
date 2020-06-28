@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs"
+import Img from "gatsby-image"
 
 const NavigatePost = ({ title, slug, image, prev, next }) => {
   return (
@@ -20,10 +21,10 @@ const NavigatePost = ({ title, slug, image, prev, next }) => {
             </>
           )}
         </span>
-        <div className="p-4 rounded cursor-pointer max-w-xs">
-          <img
-            src={image}
-            className="rounded"
+        <div className="p-4 rounded cursor-pointer max-w-xs w-full">
+          <Img
+            fluid={image}
+            className="rounded h-40 w-full"
             alt={`Ir para página do post ${title}`}
           />
           <h4 className="hidden md:block md:text-xl lg:text-2xl font-display text-center">

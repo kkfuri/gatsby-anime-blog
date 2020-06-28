@@ -1,4 +1,44 @@
 const path = require("path")
+const { createRemoteFileNode } = require("gatsby-source-filesystem")
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  createTypes(`
+    type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
+      image: File @link(from: "image___NODE")
+    }
+    type Frontmatter {
+      title: String!
+      image: String
+    }
+  `)
+}
+
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode },
+  store,
+  cache,
+  createNodeId,
+}) => {
+  if (
+    node.internal.type === "MarkdownRemark" &&
+    node.frontmatter.image !== null
+  ) {
+    let fileNode = await createRemoteFileNode({
+      url: node.frontmatter.image,
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      cache,
+      store,
+    })
+    if (fileNode) {
+      node.image___NODE = fileNode.id
+    }
+  }
+}
 
 function stringToSlug(str) {
   str = str.replace(/^\s+|\s+$/g, "") // trim
@@ -29,10 +69,23 @@ exports.createPages = ({ graphql, actions }) => {
       allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
           node {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 1200, quality: 100) {
+                  base64
+                  aspectRatio
+                  src
+                  srcWebp
+                  srcSet
+                  srcSetWebp
+                  sizes
+                  originalImg
+                }
+              }
+            }
             frontmatter {
               slug
               title
-              image
               tags
               excerpt
             }

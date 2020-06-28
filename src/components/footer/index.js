@@ -8,6 +8,7 @@ const Footer = () => (
         href="https://github.com/kkfuri"
         target="_blank"
         rel="noreferrer noopener"
+        aria-label="Ir para página do desenvolvedor no Github"
       >
         <FaGithub className="inline text-2xl text-gray-600 hover:text-primary duration-150" />
       </a>
