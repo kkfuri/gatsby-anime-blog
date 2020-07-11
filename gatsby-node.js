@@ -1,44 +1,4 @@
 const path = require("path")
-const { createRemoteFileNode } = require("gatsby-source-filesystem")
-
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-  createTypes(`
-    type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-      image: File @link(from: "image___NODE")
-    }
-    type Frontmatter {
-      title: String!
-      image: String
-    }
-  `)
-}
-
-exports.onCreateNode = async ({
-  node,
-  actions: { createNode },
-  store,
-  cache,
-  createNodeId,
-}) => {
-  if (
-    node.internal.type === "MarkdownRemark" &&
-    node.frontmatter.image !== null
-  ) {
-    let fileNode = await createRemoteFileNode({
-      url: node.frontmatter.image,
-      parentNodeId: node.id,
-      createNode,
-      createNodeId,
-      cache,
-      store,
-    })
-    if (fileNode) {
-      node.image___NODE = fileNode.id
-    }
-  }
-}
 
 function stringToSlug(str) {
   str = str.replace(/^\s+|\s+$/g, "") // trim
@@ -66,28 +26,33 @@ exports.createPages = ({ graphql, actions }) => {
 
   return graphql(`
     query {
-      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      allContentfulBlogPost(sort: { order: DESC, fields: publishDate }) {
         edges {
           node {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1200) {
-                  base64
-                  aspectRatio
-                  src
-                  srcWebp
-                  srcSet
-                  srcSetWebp
-                  sizes
-                  originalImg
-                }
-              }
+            id
+            title
+            slug
+            tags
+            publishDate
+            description {
+              description
             }
-            frontmatter {
-              slug
-              title
-              tags
-              excerpt
+            body {
+              body
+            }
+            heroImage {
+              file {
+                url
+              }
+              fluid(maxWidth: 1280) {
+                base64
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+              }
             }
           }
         }
@@ -97,11 +62,11 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
-    const posts = result.data.allMarkdownRemark.edges
+    const posts = result.data.allContentfulBlogPost.edges
     const postsByTag = {}
     posts.forEach(({ node }, index) => {
-      if (node.frontmatter.tags) {
-        node.frontmatter.tags.forEach(tag => {
+      if (node.tags) {
+        node.tags.forEach(tag => {
           if (!postsByTag[tag]) {
             postsByTag[tag] = []
           }
@@ -109,11 +74,11 @@ exports.createPages = ({ graphql, actions }) => {
         })
       }
       createPage({
-        path: `${node.frontmatter.slug}`,
+        path: `${node.slug}`,
         component: blogPostTemplate,
         context: {
           posts,
-          pathSlug: node.frontmatter.slug,
+          pathSlug: node.slug,
           prev: index === 0 ? null : posts[index - 1].node,
           next: index === posts.length - 1 ? null : posts[index + 1].node,
         },

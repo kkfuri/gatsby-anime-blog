@@ -1,15 +1,26 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: "anime por fredinho",
-    description: "aqui falo sobre tudo que tem de pior",
+    title: "animes by fred",
+    description: "...",
     author: "Fred Zampier",
-    siteUrl: "https://pop-blog.vercel.app",
+    siteUrl: "https://animes-by-fred.now.sh",
   },
   plugins: [
     `gatsby-plugin-postcss`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACEID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -20,10 +31,6 @@ module.exports = {
     },
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sitemap`,
-    {
-      resolve: "gatsby-source-filesystem",
-      options: { name: "pages", path: `${__dirname}/src/content` },
-    },
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {

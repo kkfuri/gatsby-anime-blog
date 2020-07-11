@@ -6,7 +6,16 @@ import Img from "gatsby-image"
 
 import Tag from "../tag"
 
-function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
+function Post({
+  slug,
+  title,
+  publishDate: date,
+  description: { description: excerpt },
+  image,
+  tags,
+  featured,
+  showImg,
+}) {
   const classesTitle = classnames(
     "mt-2 text-3xl md:text-2xl leading-tight duration-150 font-display group-hover:text-primary",
     { "text-4xl md:text-6xl": featured }
@@ -17,7 +26,7 @@ function Post({ slug, title, date, excerpt, image, tags, featured, showImg }) {
   })
   return (
     <article className="flex flex-col">
-      <Link to={slug} aria-label="Ir para a página da publicação">
+      <Link to={`/${slug}`} aria-label="Ir para a página da publicação">
         <div className="group hover:text-primary">
           {image && (
             <Img

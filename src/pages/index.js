@@ -7,12 +7,11 @@ import Layout from "../components/layout/"
 import Post from "../components/post/"
 
 function Home({ data }) {
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allContentfulBlogPost.edges
   return (
     <Layout>
       <div className="grid grid-cols-1 gap-4 my-20 xl:gap-8 xl:grid-cols-6">
         {posts?.map((edge, index) => {
-          const { id, frontmatter } = edge.node
           const featuredPost = index % 9 === 0
           return (
             <div
@@ -20,12 +19,12 @@ function Home({ data }) {
                 "mb-8 xl:grid xl:col-span-4 xl:grid-rows-1 xl:row-span-2 xl:mb-0": featuredPost,
                 "xl:col-span-2": index % 9 !== 0,
               })}
-              key={id}
+              key={edge.node?.id}
             >
               <Post
                 featured={featuredPost}
-                image={edge.node?.image?.childImageSharp?.fluid}
-                {...frontmatter}
+                image={edge.node?.heroImage?.fluid}
+                {...edge.node}
                 showImg={[1, 2].includes(index % 9) || featuredPost}
               />
             </div>
@@ -43,23 +42,29 @@ function Home({ data }) {
 
 export const query = graphql`
   query HomepageQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allContentfulBlogPost(sort: { order: DESC, fields: publishDate }) {
       edges {
         node {
           id
-          image {
-            childImageSharp {
-              fluid(maxWidth: 1200) {
-                ...GatsbyImageSharpFluid
-              }
-            }
+          title
+          slug
+          tags
+          publishDate
+          description {
+            description
           }
-          frontmatter {
-            title
-            slug
-            date
-            tags
-            excerpt
+          heroImage {
+            file {
+              url
+            }
+            fluid(maxWidth: 1280) {
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
           }
         }
       }

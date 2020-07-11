@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 
 const NavigatePost = ({ title, slug, image, prev, next }) => {
   return (
-    <Link to={slug} className="group hover:text-primary">
+    <Link to={`/${slug}`} className="group hover:text-primary">
       <div className="transform hover:scale-110 duration-150">
         <span className="flex items-center space-x-4 justify-center mb-2 text-gray-900">
           {next && (

@@ -8,8 +8,7 @@ import NavigatePost from "../components/navigatePost"
 import Tag from "../components/tag"
 
 function Template({ data, pageContext }) {
-  const { html, frontmatter, image } = data.markdownRemark
-  const { title, date, tags } = frontmatter
+  const { title, tags, publishDate, body, heroImage } = data.contentfulBlogPost
   return (
     <Layout minimalist title={title}>
       <div className="my-20 max-w-4xl mx-auto">
@@ -24,17 +23,19 @@ function Template({ data, pageContext }) {
               ))}
             </div>
             <h5 className="text-xs uppercase tracking-widest font-body">
-              {dayjs(date).format("DD . MMMM . YYYY")}
+              {dayjs(publishDate).format("DD . MMMM . YYYY")}
             </h5>
           </div>
           <Img
             fadeIn
-            fluid={image?.childImageSharp?.fluid}
+            fluid={heroImage?.fluid}
             className="object-cover rounded w-full h-64 md:h-auto mt-12"
             alt={`Imagem do post ${title}`}
           />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }}
+        />
       </div>
       <hr className="my-20 h-2 w-full max-w-xl mx-auto" />
       <div className="flex justify-between w-full mx-auto mb-20">
@@ -42,8 +43,8 @@ function Template({ data, pageContext }) {
           {pageContext.prev && (
             <NavigatePost
               prev
-              {...pageContext.prev.frontmatter}
-              image={pageContext.prev.image.childImageSharp?.fluid}
+              {...pageContext.prev}
+              image={pageContext.prev?.heroImage?.fluid}
             />
           )}
         </div>
@@ -51,8 +52,8 @@ function Template({ data, pageContext }) {
           {pageContext.next && (
             <NavigatePost
               next
-              {...pageContext.next.frontmatter}
-              image={pageContext.next.image.childImageSharp?.fluid}
+              {...pageContext.next}
+              image={pageContext.next?.heroImage?.fluid}
             />
           )}
         </div>
@@ -63,19 +64,24 @@ function Template({ data, pageContext }) {
 
 export const query = graphql`
   query($pathSlug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $pathSlug } }) {
-      html
-      image {
-        childImageSharp {
-          fluid(maxWidth: 1600, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
+    contentfulBlogPost(slug: { eq: $pathSlug }) {
+      title
+      tags
+      publishDate
+      body {
+        childMarkdownRemark {
+          html
         }
       }
-      frontmatter {
-        title
-        date
-        tags
+      heroImage {
+        fluid {
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+        }
       }
     }
   }
