@@ -1,5 +1,5 @@
 import React from "react"
-import { FaGithub } from "react-icons/fa"
+// import { FaGithub } from "react-icons/fa"
 
 const Footer = () => (
   <footer className="w-full py-4 mx-auto bg-gray-200">

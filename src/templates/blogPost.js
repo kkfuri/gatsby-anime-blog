@@ -34,6 +34,7 @@ function Template({ data, pageContext }) {
           />
         </div>
         <div
+          className="body-markdown"
           dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }}
         />
       </div>

@@ -29,4 +29,55 @@ h6 {
   @apply tracking-widest uppercase;
 }
 
+.body-markdown > * {
+  @apply text-gray-800;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.body-markdown p {
+  @apply font-body;
+  margin-bottom: 1.15rem;
+}
+
+.body-markdown h1,
+.body-markdown h2,
+.body-markdown h3,
+.body-markdown h4,
+.body-markdown h5 {
+  @apply font-bold;
+  margin: 2.75rem 0 1.05rem;
+  line-height: 1.15;
+}
+
+.body-markdown h1 {
+  margin-top: 0;
+  font-size: 1.802em;
+}
+
+.body-markdown h2 {
+  font-size: 1.602em;
+}
+
+.body-markdown h3 {
+  font-size: 1.424em;
+}
+
+.body-markdown h4 {
+  font-size: 1.266em;
+}
+
+.body-markdown h5 {
+  font-size: 1.125em;
+}
+
+.body-markdown a {
+  @apply text-primary underline;
+}
+
+.body-markdown small,
+.body-markdown .text_small {
+  font-size: 0.937em;
+}
+
 @tailwind utilities;
