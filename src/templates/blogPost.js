@@ -11,7 +11,7 @@ function Template({ data, pageContext }) {
   const { title, tags, publishDate, body, heroImage } = data.contentfulBlogPost
   return (
     <Layout minimalist title={title}>
-      <div className="my-20 max-w-4xl mx-auto">
+      <div className="my-20 max-w-4xl mx-auto w-full">
         <div className="flex flex-col mb-8 justify-between">
           <h1 className="text-4xl lg:text-5xl font-normal font-display text-center">
             {title}
