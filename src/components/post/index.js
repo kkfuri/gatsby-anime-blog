@@ -45,10 +45,10 @@ function Post({
           {tags?.map(tag => (
             <Tag tag={tag} key={tag} />
           ))}
-          <h6 className="inline ml-4 tracking-widest text-gray-800 font-body">
-            {dayjs(date).format("DD.MM.YYYY")}
-          </h6>
         </div>
+        <h6 className="inline ml-4 tracking-widest text-gray-800 font-body">
+          {dayjs(date).format("DD.MM.YYYY")}
+        </h6>
       </div>
       {!featured && (
         <p

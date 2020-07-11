@@ -11,12 +11,12 @@ function Template({ data, pageContext }) {
   const { title, tags, publishDate, body, heroImage } = data.contentfulBlogPost
   return (
     <Layout minimalist title={title}>
-      <div className="my-20 max-w-4xl mx-auto w-full">
+      <div className="mt-20 max-w-4xl mx-auto w-full">
         <div className="flex flex-col mb-8 justify-between">
           <h1 className="text-4xl lg:text-5xl font-normal font-display text-center">
             {title}
           </h1>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-wrap">
             <div className="inline space-x-4">
               {tags?.map(tag => (
                 <Tag tag={tag} />
@@ -39,7 +39,7 @@ function Template({ data, pageContext }) {
         />
       </div>
       <hr className="my-20 h-2 w-full max-w-xl mx-auto" />
-      <div className="flex justify-between w-full mx-auto mb-20">
+      <div className="flex flex-col md:flex-row space-y-20 md:space-y-0 justify-between w-full mx-auto mb-20">
         <div>
           {pageContext.prev && (
             <NavigatePost
