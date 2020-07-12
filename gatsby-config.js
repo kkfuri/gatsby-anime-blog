@@ -29,6 +29,21 @@ module.exports = {
         defaultQuality: 95,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Animes by fred`,
+        short_name: `Fred's blog`,
+        description: `Here I mainly talk about animes`,
+        lang: `pt-br`,
+        display: `standalone`,
+        icon: `static/favicon.png`,
+        start_url: `/`,
+        background_color: `#f7fafc`,
+        theme_color: `#038cfc`,
+      },
+    },
+    `gatsby-plugin-offline`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sitemap`,
     {
