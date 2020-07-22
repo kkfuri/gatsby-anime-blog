@@ -26,6 +26,7 @@ function Template({ data, pageContext }) {
       slug={slug}
       type="article"
       keywords={tags}
+      publishDate={publishDate}
     >
       <div className="w-full max-w-4xl mx-auto mt-20">
         <div className="flex flex-col justify-between mb-8">

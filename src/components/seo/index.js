@@ -24,6 +24,7 @@ const SEO = ({
   keywords = [],
   title,
   type,
+  publishDate,
 }) => {
   return (
     <StaticQuery
@@ -55,6 +56,10 @@ const SEO = ({
               .concat(meta)}
           >
             <meta
+              property="og:site_name"
+              content={data.site.siteMetadata.title}
+            />
+            <meta
               property="og:title"
               content={title || data.site.siteMetadata.title}
             />
@@ -77,6 +82,14 @@ const SEO = ({
             />
             <meta name="twitter:image" content={image || ""} />
             <meta name="twitter:description" content={metaDescription} />
+
+            <meta
+              property="article:author"
+              content={data.site.siteMetadata.author}
+            />
+            <meta property="article:section" content="Anime" />
+            <meta property="article:tag" content={keywords.join(", ")} />
+            <meta property="article:published_time" content={publishDate} />
           </Helmet>
         )
       }}
