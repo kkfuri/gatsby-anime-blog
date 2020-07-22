@@ -13,6 +13,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.2.0",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.28",
     "gatsby": "^2.23.3",

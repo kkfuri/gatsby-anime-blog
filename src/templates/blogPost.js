@@ -50,8 +50,8 @@ function Template({ data, pageContext }) {
             alt={`Imagem do post ${title}`}
           />
         </div>
-        <div
-          className="body-markdown"
+        <article
+          class="prose lg:prose-xl mx-auto"
           dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }}
         />
       </div>
