@@ -9,6 +9,7 @@ const detailsQuery = graphql`
         title
         description
         author
+        siteUrl
       }
     }
   }
@@ -16,10 +17,14 @@ const detailsQuery = graphql`
 
 const SEO = ({
   description,
+  slug,
+  image,
   lang = "pt-br",
   meta = [],
   keywords = [],
   title,
+  type,
+  publishDate,
 }) => {
   return (
     <StaticQuery
@@ -39,34 +44,6 @@ const SEO = ({
                 name: "description",
                 content: metaDescription,
               },
-              {
-                property: "og:title",
-                content: title || data.site.siteMetadata.title,
-              },
-              {
-                property: "og:description",
-                content: metaDescription,
-              },
-              {
-                property: "og:type",
-                content: "website",
-              },
-              {
-                name: "twitter:card",
-                content: "summary",
-              },
-              {
-                name: "twitter:creator",
-                content: data.site.siteMetadata.author,
-              },
-              {
-                name: "twitter:title",
-                content: title || data.site.siteMetadata.title,
-              },
-              {
-                name: "twitter:description",
-                content: metaDescription,
-              },
             ]
               .concat(
                 keywords.length > 0
@@ -77,7 +54,43 @@ const SEO = ({
                   : []
               )
               .concat(meta)}
-          />
+          >
+            <meta
+              property="og:site_name"
+              content={data.site.siteMetadata.title}
+            />
+            <meta
+              property="og:title"
+              content={title || data.site.siteMetadata.title}
+            />
+            <meta property="og:type" content={type || `website`} />
+            <meta
+              property="og:url"
+              content={`${data.site.siteMetadata.siteUrl}/${slug || ""}`}
+            />
+            <meta property="og:image" content={image || ""} />
+            <meta property="og:description" content={metaDescription} />
+
+            <meta name="twitter:card" content="summary" />
+            <meta
+              name="twitter:creator"
+              content={data.site.siteMetadata.author}
+            />
+            <meta
+              name="twitter:title"
+              content={title || data.site.siteMetadata.title}
+            />
+            <meta name="twitter:image" content={image || ""} />
+            <meta name="twitter:description" content={metaDescription} />
+
+            <meta
+              property="article:author"
+              content={data.site.siteMetadata.author}
+            />
+            <meta property="article:section" content="Anime" />
+            <meta property="article:tag" content={keywords.join(", ")} />
+            <meta property="article:published_time" content={publishDate} />
+          </Helmet>
         )
       }}
     />
