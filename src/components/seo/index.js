@@ -43,46 +43,6 @@ const SEO = ({
                 name: "description",
                 content: metaDescription,
               },
-              {
-                name: "og:image",
-                content: `${image}` || "",
-              },
-              {
-                name: "og:url",
-                content: `${data.site.siteMetadata.siteUrl}/${slug || ""}`,
-              },
-              {
-                name: "og:title",
-                content: title || data.site.siteMetadata.title,
-              },
-              {
-                name: "og:description",
-                content: metaDescription,
-              },
-              {
-                name: "og:site_name",
-                content: data.site.siteMetadata.siteUrl,
-              },
-              {
-                name: "og:type",
-                content: type || "website",
-              },
-              {
-                name: "twitter:card",
-                content: "summary",
-              },
-              {
-                name: "twitter:creator",
-                content: data.site.siteMetadata.author,
-              },
-              {
-                name: "twitter:title",
-                content: title || data.site.siteMetadata.title,
-              },
-              {
-                name: "twitter:description",
-                content: metaDescription,
-              },
             ]
               .concat(
                 keywords.length > 0
@@ -93,7 +53,31 @@ const SEO = ({
                   : []
               )
               .concat(meta)}
-          />
+          >
+            <meta
+              property="og:title"
+              content={title || data.site.siteMetadata.title}
+            />
+            <meta property="og:type" content={type || `website`} />
+            <meta
+              property="og:url"
+              content={`${data.site.siteMetadata.siteUrl}/${slug || ""}`}
+            />
+            <meta property="og:image" content={image || ""} />
+            <meta property="og:description" content={metaDescription} />
+
+            <meta name="twitter:card" content="summary" />
+            <meta
+              name="twitter:creator"
+              content={data.site.siteMetadata.author}
+            />
+            <meta
+              name="twitter:title"
+              content={title || data.site.siteMetadata.title}
+            />
+            <meta name="twitter:image" content={image || ""} />
+            <meta name="twitter:description" content={metaDescription} />
+          </Helmet>
         )
       }}
     />
