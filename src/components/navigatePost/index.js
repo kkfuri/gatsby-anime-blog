@@ -6,8 +6,8 @@ import Img from "gatsby-image"
 const NavigatePost = ({ title, slug, image, prev, next }) => {
   return (
     <Link to={`/${slug}`} className="group hover:text-primary">
-      <div className="transform hover:scale-110 duration-150">
-        <span className="flex items-center space-x-4 justify-center mb-2 text-gray-900">
+      <div className="inline-block duration-150 transform hover:scale-110">
+        <span className="flex items-center justify-center mb-2 space-x-4 text-gray-900">
           {next && (
             <>
               <p>post mais antigo</p>
@@ -21,14 +21,14 @@ const NavigatePost = ({ title, slug, image, prev, next }) => {
             </>
           )}
         </span>
-        <div className="p-4 rounded cursor-pointer max-w-xs h-40">
+        <div className="h-40 max-w-xs p-4 rounded cursor-pointer">
           <Img
             fluid={image}
-            className="rounded h-40"
+            className="h-40 rounded"
             style={{ width: 288 }}
             alt={`Ir para página do post ${title}`}
           />
-          <h4 className="hidden md:block md:text-xl lg:text-xl font-display text-center">
+          <h4 className="hidden text-center md:block md:text-xl lg:text-xl font-display">
             {title}
           </h4>
         </div>
