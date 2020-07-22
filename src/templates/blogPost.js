@@ -8,28 +8,44 @@ import NavigatePost from "../components/navigatePost"
 import Tag from "../components/tag"
 
 function Template({ data, pageContext }) {
-  const { title, tags, publishDate, body, heroImage } = data.contentfulBlogPost
+  const {
+    title,
+    tags,
+    publishDate,
+    body,
+    slug,
+    heroImage,
+    description,
+  } = data.contentfulBlogPost
   return (
-    <Layout minimalist title={title}>
-      <div className="mt-20 max-w-4xl mx-auto w-full">
-        <div className="flex flex-col mb-8 justify-between">
-          <h1 className="text-4xl lg:text-5xl font-normal font-display text-center">
+    <Layout
+      minimalist
+      title={title}
+      description={description.description}
+      image={heroImage.fluid.src}
+      slug={slug}
+      type="article"
+      keywords={tags}
+    >
+      <div className="w-full max-w-4xl mx-auto mt-20">
+        <div className="flex flex-col justify-between mb-8">
+          <h1 className="text-4xl font-normal text-center lg:text-5xl font-display">
             {title}
           </h1>
-          <div className="flex justify-between items-center flex-wrap">
+          <div className="flex flex-wrap items-center justify-between">
             <div className="inline space-x-4">
               {tags?.map(tag => (
                 <Tag tag={tag} />
               ))}
             </div>
-            <h5 className="text-xs uppercase tracking-widest font-body">
+            <h5 className="text-xs tracking-widest uppercase font-body">
               {dayjs(publishDate).format("DD . MMMM . YYYY")}
             </h5>
           </div>
           <Img
             fadeIn
             fluid={heroImage?.fluid}
-            className="object-cover rounded w-full h-64 md:h-auto mt-12"
+            className="object-cover w-full h-64 mt-12 rounded md:h-auto"
             alt={`Imagem do post ${title}`}
           />
         </div>
@@ -38,8 +54,8 @@ function Template({ data, pageContext }) {
           dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }}
         />
       </div>
-      <hr className="my-20 h-2 w-full max-w-xl mx-auto" />
-      <div className="flex flex-col md:flex-row space-y-20 md:space-y-0 justify-between w-full mx-auto mb-20">
+      <hr className="w-full h-2 max-w-xl mx-auto my-20" />
+      <div className="flex flex-col justify-between w-full mx-auto mb-20 space-y-20 md:flex-row md:space-y-0">
         <div>
           {pageContext.prev && (
             <NavigatePost
@@ -69,6 +85,10 @@ export const query = graphql`
       title
       tags
       publishDate
+      slug
+      description {
+        description
+      }
       body {
         childMarkdownRemark {
           html

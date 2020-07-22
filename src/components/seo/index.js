@@ -9,6 +9,7 @@ const detailsQuery = graphql`
         title
         description
         author
+        siteUrl
       }
     }
   }
@@ -16,10 +17,13 @@ const detailsQuery = graphql`
 
 const SEO = ({
   description,
+  slug,
+  image,
   lang = "pt-br",
   meta = [],
   keywords = [],
   title,
+  type,
 }) => {
   return (
     <StaticQuery
@@ -40,16 +44,28 @@ const SEO = ({
                 content: metaDescription,
               },
               {
-                property: "og:title",
+                name: "og:image",
+                content: `${image}` || "",
+              },
+              {
+                name: "og:url",
+                content: `${data.site.siteMetadata.siteUrl}/${slug || ""}`,
+              },
+              {
+                name: "og:title",
                 content: title || data.site.siteMetadata.title,
               },
               {
-                property: "og:description",
+                name: "og:description",
                 content: metaDescription,
               },
               {
-                property: "og:type",
-                content: "website",
+                name: "og:site_name",
+                content: data.site.siteMetadata.siteUrl,
+              },
+              {
+                name: "og:type",
+                content: type || "website",
               },
               {
                 name: "twitter:card",
