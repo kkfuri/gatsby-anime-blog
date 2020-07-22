@@ -2,6 +2,7 @@ import React from "react"
 import dayjs from "dayjs"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import Layout from "../components/layout"
 import NavigatePost from "../components/navigatePost"
@@ -50,10 +51,9 @@ function Template({ data, pageContext }) {
             alt={`Imagem do post ${title}`}
           />
         </div>
-        <article
-          class="prose lg:prose-xl mx-auto"
-          dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }}
-        />
+        <article class="prose prose-xl mx-auto max-w-none md:px-8">
+          <MDXRenderer>{body.childMdx.body}</MDXRenderer>
+        </article>
       </div>
       <hr className="w-full h-2 max-w-xl mx-auto my-20" />
       <div className="flex flex-col justify-between w-full mx-auto mb-20 space-y-20 md:flex-row md:space-y-0">
@@ -91,6 +91,10 @@ export const query = graphql`
         description
       }
       body {
+        body
+        childMdx {
+          body
+        }
         childMarkdownRemark {
           html
         }
