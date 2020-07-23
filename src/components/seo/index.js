@@ -9,6 +9,7 @@ const detailsQuery = graphql`
         title
         description
         author
+        twitterAuthor
         siteUrl
       }
     }
@@ -44,6 +45,10 @@ const SEO = ({
                 name: "description",
                 content: metaDescription,
               },
+              {
+                name: "image",
+                content: image || "",
+              },
             ]
               .concat(
                 keywords.length > 0
@@ -71,17 +76,15 @@ const SEO = ({
             <meta property="og:image" content={image || ""} />
             <meta property="og:description" content={metaDescription} />
 
-            <meta name="twitter:card" content="summary" />
+            <meta
+              name="twitter:site"
+              content={data.site.siteMetadata.twitterAuthor}
+            />
+            <meta name="twitter:card" content="summary_large_image" />
             <meta
               name="twitter:creator"
-              content={data.site.siteMetadata.author}
+              content={data.site.siteMetadata.twitterAuthor}
             />
-            <meta
-              name="twitter:title"
-              content={title || data.site.siteMetadata.title}
-            />
-            <meta name="twitter:image" content={image || ""} />
-            <meta name="twitter:description" content={metaDescription} />
 
             <meta
               property="article:author"

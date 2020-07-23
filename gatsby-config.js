@@ -7,6 +7,7 @@ module.exports = {
     title: "animes by fred",
     description: "...",
     author: "Fred Zampier",
+    twitterAuthor: "@FredZampier",
     siteUrl: "https://animes-by-fred.now.sh",
   },
   plugins: [
