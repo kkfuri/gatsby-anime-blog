@@ -51,7 +51,7 @@ function Template({ data, pageContext }) {
             alt={`Imagem do post ${title}`}
           />
         </div>
-        <article class="prose prose-xl mx-auto max-w-none md:px-8">
+        <article class="prose prose-md mx-auto max-w-none md:px-8">
           <MDXRenderer>{body.childMdx.body}</MDXRenderer>
         </article>
       </div>
