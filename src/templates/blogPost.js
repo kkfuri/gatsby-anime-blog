@@ -29,15 +29,12 @@ function Template({ data, pageContext }) {
       keywords={tags}
       publishDate={publishDate}
     >
-      <div className="w-full max-w-4xl mx-auto mt-20">
+      <div className="w-full max-w-4xl mx-auto md:mt-10">
         <div className="flex flex-col justify-between mb-8">
-          <h1 className="text-4xl font-normal text-center lg:text-5xl font-display">
-            {title}
-          </h1>
           <div className="flex flex-wrap items-center justify-between">
             <div className="inline space-x-4">
               {tags?.map(tag => (
-                <Tag tag={tag} />
+                <Tag tag={tag} key={tag} />
               ))}
             </div>
             <h5 className="text-xs tracking-widest uppercase font-body">
@@ -51,7 +48,7 @@ function Template({ data, pageContext }) {
             alt={`Imagem do post ${title}`}
           />
         </div>
-        <article class="prose prose-md mx-auto max-w-none md:px-8">
+        <article className="mx-auto prose prose-md max-w-none md:px-8">
           <MDXRenderer>{body.childMdx.body}</MDXRenderer>
         </article>
       </div>

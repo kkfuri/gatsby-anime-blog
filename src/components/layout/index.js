@@ -9,21 +9,22 @@ import ListFeaturedItem from "../listFeaturedItem"
 
 const shortcodes = { ListFeaturedItem }
 
-function Layout({ children, minimalist, ...props }) {
+function Layout({ children, minimalist, title, ...props }) {
   return (
     <MDXProvider components={shortcodes}>
-      <div className="container flex flex-col min-h-screen px-4 mx-auto mt-12">
-        <SEO {...props} />
-        <StaticQuery
-          query={query}
-          render={data => (
-            <Header
-              title={data.site.siteMetadata.title}
-              description={data.site.siteMetadata.description}
-              minimalist={minimalist}
-            />
-          )}
-        />
+      <SEO title={title} {...props} />
+      <StaticQuery
+        query={query}
+        render={data => (
+          <Header
+            title={data.site.siteMetadata.title}
+            pageTitle={title}
+            description={title ? "" : data.site.siteMetadata.description}
+            minimalist={minimalist}
+          />
+        )}
+      />
+      <div className="container flex flex-col min-h-screen px-4 mx-auto">
         {children}
       </div>
       <Footer />
