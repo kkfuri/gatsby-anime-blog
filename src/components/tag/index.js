@@ -8,7 +8,8 @@ function Tag({ tag }) {
   return (
     <Link
       to={`/tag/${slug}`}
-      className="inline mr-1 py-4 font-bold tracking-wider uppercase duration-75 cursor-pointer hover:text-primary-dark"
+      className="inline mr-1 font-bold tracking-wider uppercase duration-75 cursor-pointer hover:text-primary-dark"
+      aria-label={`Ir para página da tag ${tag}`}
     >
       [{tag}]
     </Link>
