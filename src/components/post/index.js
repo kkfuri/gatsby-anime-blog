@@ -40,12 +40,10 @@ function Post({
           <h2 className={classesTitle}>{title}</h2>
         </div>
       </Link>
-      <div className="flex flex-wrap items-center space-x-4">
-        <div className="inline">
-          {tags?.map(tag => (
-            <Tag tag={tag} key={tag} />
-          ))}
-        </div>
+      <div className="flex flex-wrap">
+        {tags?.map(tag => (
+          <Tag tag={tag} key={tag} />
+        ))}
         <h6 className="inline ml-4 tracking-widest text-gray-800 font-body">
           {dayjs(date).format("DD.MM.YYYY")}
         </h6>

@@ -44,7 +44,7 @@ function Template({ data, pageContext }) {
           <Img
             fadeIn
             fluid={heroImage?.fluid}
-            className="object-cover w-full h-64 mt-12 rounded md:h-auto"
+            className="object-cover w-full h-64 mt-4 rounded md:mt-12 md:h-auto"
             alt={`Imagem do post ${title}`}
           />
         </div>

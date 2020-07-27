@@ -31,7 +31,7 @@ function Home({ data }) {
           )
         })}
         {posts?.length === 0 && (
-          <h1 className="col-span-6 text-6xl inline text-center font-display font-light">
+          <h1 className="inline col-span-6 text-6xl font-light text-center font-display">
             Sem posts por enquanto <FaSadCry className="inline text-blue-500" />
           </h1>
         )}
