@@ -21,14 +21,14 @@ const NavigatePost = ({ title, slug, image, prev, next }) => {
             </>
           )}
         </span>
-        <div className="h-40 max-w-xs p-4 rounded cursor-pointer">
+        <div className="max-w-xs p-4 rounded cursor-pointer">
           <Img
             fluid={image}
-            className="h-40 rounded"
+            className="mb-2 rounded-sm shadow"
             style={{ width: 288 }}
             alt={`Ir para página do post ${title}`}
           />
-          <h4 className="hidden text-center md:block md:text-xl lg:text-xl font-display">
+          <h4 className="hidden text-center md:block md:text-lg font-display">
             {title}
           </h4>
         </div>
