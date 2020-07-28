@@ -40,7 +40,7 @@ function Home({ data }) {
   )
 }
 
-export const query = graphql`
+const query = graphql`
   query HomepageQuery {
     allContentfulBlogPost(sort: { order: DESC, fields: publishDate }) {
       edges {

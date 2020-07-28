@@ -86,7 +86,7 @@ function Template({ data, pageContext }) {
   )
 }
 
-export const query = graphql`
+const query = graphql`
   query($pathSlug: String!) {
     site {
       siteMetadata {
