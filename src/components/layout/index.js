@@ -32,7 +32,7 @@ function Layout({ children, minimalist, title, ...props }) {
   )
 }
 
-const query = graphql`
+export const query = graphql`
   {
     site {
       siteMetadata {

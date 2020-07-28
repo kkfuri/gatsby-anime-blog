@@ -7,7 +7,7 @@ import Layout from "../components/layout/"
 import Post from "../components/post/"
 
 function Home({ data }) {
-  const posts = data.allContentfulBlogPost.edges
+  const posts = data?.allContentfulBlogPost?.edges
   return (
     <Layout>
       <div className="grid grid-cols-1 gap-4 my-20 xl:gap-8 xl:grid-cols-6">
@@ -40,7 +40,7 @@ function Home({ data }) {
   )
 }
 
-const query = graphql`
+export const query = graphql`
   query HomepageQuery {
     allContentfulBlogPost(sort: { order: DESC, fields: publishDate }) {
       edges {
