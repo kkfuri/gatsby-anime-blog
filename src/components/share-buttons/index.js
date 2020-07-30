@@ -3,10 +3,12 @@ import { FaFacebookF, FaTwitter } from "react-icons/fa"
 
 const sharers = [
   {
+    id: 1,
     baseUrl: "https://www.facebook.com/sharer/sharer.php?u=",
     Component: FaFacebookF,
   },
   {
+    id: 2,
     baseUrl: "https://twitter.com/intent/tweet?text=",
     Component: FaTwitter,
   },
@@ -23,6 +25,7 @@ const ShareButtons = ({ showText = true, link }) => {
       )}
       {sharers.map(i => (
         <a
+          key={i.id}
           href={i.baseUrl.concat(link)}
           target="_blank"
           rel="noreferrer"
