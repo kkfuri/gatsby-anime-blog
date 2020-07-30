@@ -16,7 +16,14 @@ const ReturnArrow = () => (
   </Link>
 )
 
-const Header = ({ minimalist, title, pageTitle, description }) => {
+interface HeaderProps {
+  minimalist?: boolean
+  title?: string
+  pageTitle?: string
+  description?: string
+}
+
+const Header = ({ minimalist, title, pageTitle, description }: HeaderProps) => {
   const [showTitle, setShowTitle] = useState(true)
   const titleClasses = classnames(
     "flex font-display md:inline-block px-10 font-normal text-center justify-center tracking-wide text-gray-900 duration-400 leading-tight",
@@ -53,13 +60,7 @@ const Header = ({ minimalist, title, pageTitle, description }) => {
         })}
       >
         <AnimatePresence>
-          <motion.div
-            show={{
-              transition: {
-                staggerChildren: 0.5,
-              },
-            }}
-          >
+          <div>
             {showTitle && (
               <motion.h1
                 className={titleClasses}
@@ -84,7 +85,7 @@ const Header = ({ minimalist, title, pageTitle, description }) => {
                 {pageTitle}
               </motion.h1>
             )}
-          </motion.div>
+          </div>
         </AnimatePresence>
         {description && (
           <motion.h5

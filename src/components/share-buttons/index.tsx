@@ -14,7 +14,12 @@ const sharers = [
   },
 ]
 
-const ShareButtons = ({ showText = true, link }) => {
+interface ShareButtonsProps {
+  showText?: boolean
+  link: string
+}
+
+const ShareButtons = ({ showText = true, link }: ShareButtonsProps) => {
   if (!link) return <> </>
   return (
     <div className="flex flex-wrap items-center justify-center space-x-4 md:justify-end">

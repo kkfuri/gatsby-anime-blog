@@ -1,9 +1,23 @@
 import React from "react"
 import { Link } from "gatsby"
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs"
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 
-const NavigatePost = ({ title, slug, image, prev, next }) => {
+interface NavigatePostProps {
+  title: string
+  slug: string
+  image: FluidObject
+  prev: object
+  next: boolean
+}
+
+const NavigatePost = ({
+  title,
+  slug,
+  image,
+  prev,
+  next,
+}: NavigatePostProps) => {
   return (
     <Link to={`/${slug}`} className="group hover:text-primary">
       <div className="inline-block duration-150 transform hover:scale-110">

@@ -1,6 +1,16 @@
 import React from "react"
 
-const ListFeaturedItem = ({ image, title, description }) => {
+interface ListFeaturedItemProps {
+  image: string
+  title: string
+  description: string
+}
+
+const ListFeaturedItem = ({
+  image,
+  title,
+  description,
+}: ListFeaturedItemProps) => {
   return (
     <div className="flex flex-col items-center my-12 md:items-start md:flex-row">
       <h3 className="w-full md:hidden" style={{ marginTop: 0 }}>

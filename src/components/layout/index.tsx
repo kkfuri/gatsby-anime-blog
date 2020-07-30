@@ -9,7 +9,13 @@ import ListFeaturedItem from "../listFeaturedItem"
 
 const shortcodes = { ListFeaturedItem }
 
-function Layout({ children, minimalist, title, ...props }) {
+interface LayoutProps {
+  children: React.ReactNode
+  minimalist?: boolean
+  title?: string
+}
+
+function Layout({ children, minimalist, title, ...props }: LayoutProps) {
   const {
     site: { siteMetadata },
   } = useStaticQuery(query)

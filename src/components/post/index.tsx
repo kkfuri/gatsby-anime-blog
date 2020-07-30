@@ -2,9 +2,20 @@ import React from "react"
 import { Link } from "gatsby"
 import classnames from "classnames"
 import dayjs from "dayjs"
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 
 import Tag from "../tag"
+
+interface PostProps {
+  slug: string
+  title: string
+  publishDate: string
+  description: { description: { excerpt: string } }
+  image: FluidObject
+  tags: string[]
+  featured?: boolean
+  showImg?: boolean
+}
 
 function Post({
   slug,
@@ -15,7 +26,7 @@ function Post({
   tags,
   featured,
   showImg,
-}) {
+}: PostProps) {
   const classesTitle = classnames(
     "mt-2 text-3xl md:text-2xl leading-tight duration-150 font-display group-hover:text-primary",
     { "text-4xl md:text-6xl": featured }
