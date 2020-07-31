@@ -21,8 +21,8 @@ function stringToSlug(str) {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  const blogPostTemplate = path.resolve("src/templates/blogPost.js")
-  const singleTagTemplate = path.resolve("src/templates/tagPage.js")
+  const blogPostTemplate = path.resolve("src/templates/blogPost.tsx")
+  const singleTagTemplate = path.resolve("src/templates/tagPage.tsx")
 
   return graphql(`
     query {
