@@ -15,7 +15,12 @@ interface LayoutProps {
   title?: string
 }
 
-function Layout({ children, minimalist, title, ...props }: LayoutProps) {
+function Layout<T extends LayoutProps>({
+  children,
+  minimalist,
+  title,
+  ...props
+}: T) {
   const {
     site: { siteMetadata },
   } = useStaticQuery(query)
