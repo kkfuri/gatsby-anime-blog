@@ -27,6 +27,7 @@ const SEO = ({
 }: SEOProps) => {
   const { site } = useStaticQuery(query)
   const metaDescription = description || site.siteMetadata.description
+  const metaImage = image ? `https:${image}` : ""
   return (
     <Helmet
       htmlAttributes={{
@@ -41,7 +42,7 @@ const SEO = ({
         },
         {
           name: "image",
-          content: image || "",
+          content: metaImage,
         },
       ]
         .concat(
@@ -61,12 +62,13 @@ const SEO = ({
         property="og:url"
         content={`${site.siteMetadata.siteUrl}/${slug || ""}`}
       />
-      <meta property="og:image" content={image || ""} />
+      <meta property="og:image" content={metaImage} />
       <meta property="og:description" content={metaDescription} />
 
       <meta name="twitter:site" content={site.siteMetadata.twitterAuthor} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={site.siteMetadata.twitterAuthor} />
+      <meta name="twitter:image" content={metaImage} />
 
       <meta property="article:author" content={site.siteMetadata.author} />
       <meta property="article:section" content="Anime" />
