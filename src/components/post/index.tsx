@@ -6,7 +6,7 @@ import Img, { FluidObject } from "gatsby-image"
 
 import Tag from "../tag"
 
-interface PostProps {
+export interface PostProps {
   slug: string
   title: string
   publishDate: string
