@@ -2,6 +2,18 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { graphql, useStaticQuery } from "gatsby"
 
+interface SEOProps {
+  description?: string
+  slug?: string
+  image?: string
+  lang?: string
+  meta?: []
+  keywords?: []
+  title?: string
+  type?: string
+  publishDate?: string
+}
+
 const SEO = ({
   description,
   slug,
@@ -12,7 +24,7 @@ const SEO = ({
   title,
   type,
   publishDate,
-}) => {
+}: SEOProps) => {
   const { site } = useStaticQuery(query)
   const metaDescription = description || site.siteMetadata.description
   return (

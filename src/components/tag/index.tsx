@@ -3,7 +3,11 @@ import { Link } from "gatsby"
 
 import stringToSlug from "../../utils/slugify"
 
-function Tag({ tag }) {
+interface TagProps {
+  tag: string
+}
+
+function Tag({ tag }: TagProps) {
   const slug = stringToSlug(tag)
   return (
     <Link

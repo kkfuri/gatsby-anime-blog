@@ -16,6 +16,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-mdx`,
+    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-source-contentful`,
       options: {
