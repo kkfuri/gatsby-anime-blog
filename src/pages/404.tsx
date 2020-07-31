@@ -1,19 +1,20 @@
 import React from "react"
-import Layout from "../components/layout"
 import { Link } from "gatsby"
+
+import Layout from "../components/layout"
 
 const Page404 = () => {
   return (
     <Layout minimalist>
-      <div className="flex justify-center items-center flex-col flex-1">
+      <div className="flex flex-col items-center justify-center flex-1">
         <div className="mb-2 -mt-40 text-center">
-          <h1 className="font-semibold font-display text-6xl text-primary leading-none">
+          <h1 className="text-6xl font-semibold leading-none font-display text-primary">
             404
           </h1>
           <p className="font-bold leading-none">Página não encontrada</p>
         </div>
         <Link to="/">
-          <span className="px-4 py-2 duration-150 uppercase text-xs leading-loose tracking-wider hover:text-primary">
+          <span className="px-4 py-2 text-xs leading-loose tracking-wider uppercase duration-150 hover:text-primary">
             Voltar para tela de início
           </span>
         </Link>
