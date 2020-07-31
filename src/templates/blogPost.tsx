@@ -1,15 +1,42 @@
 import React from "react"
 import dayjs from "dayjs"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import ShareButtons from "../components/share-buttons"
 import Layout from "../components/layout"
 import NavigatePost from "../components/navigatePost"
 import Tag from "../components/tag"
+import { PostProps } from "../components/post"
 
-function Template({ data, pageContext }) {
+interface Edge extends PostProps {
+  body: {
+    childMdx: {
+      body: string
+    }
+  }
+  heroImage: {
+    fluid: FluidObject
+  }
+}
+
+interface TemplateProps {
+  pageContext: {
+    prev: Edge
+    next: Edge
+  }
+  data: {
+    contentfulBlogPost: Edge
+    site: {
+      siteMetadata: {
+        siteUrl: string
+      }
+    }
+  }
+}
+
+function Template({ data, pageContext }: TemplateProps) {
   const {
     title,
     tags,
