@@ -7,8 +7,8 @@ interface NavigatePostProps {
   title: string
   slug: string
   image: FluidObject
-  prev: object
-  next: boolean
+  prev?: boolean
+  next?: boolean
 }
 
 const NavigatePost = ({
