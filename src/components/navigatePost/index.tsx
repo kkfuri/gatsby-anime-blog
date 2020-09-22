@@ -19,9 +19,9 @@ const NavigatePost = ({
   next,
 }: NavigatePostProps) => {
   return (
-    <Link to={`/${slug}`} className="group hover:text-primary">
-      <div className="inline-block duration-150 transform hover:scale-110">
-        <span className="flex items-center justify-center mb-2 space-x-4 text-gray-900">
+    <Link to={`/${slug}`} className="group hover:text-accent">
+      <div className="inline-block duration-150">
+        <span className="flex items-center justify-center mb-2 space-x-4 text-primary">
           {next && (
             <>
               <p>post mais antigo</p>

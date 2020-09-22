@@ -57,7 +57,7 @@ function Template({ data, pageContext }: TemplateProps) {
       keywords={tags}
       publishDate={publishDate}
     >
-      <div className="w-full max-w-4xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto mt-10">
         <div className="flex flex-col justify-between">
           <div className="flex flex-col-reverse flex-wrap items-center justify-between mb-3 md:flex-row">
             <div className="flex flex-wrap">
@@ -79,7 +79,7 @@ function Template({ data, pageContext }: TemplateProps) {
             alt={`Imagem do post ${title}`}
           />
         </div>
-        <article className="mx-auto prose prose-md max-w-none md:px-8">
+        <article className="mx-auto prose prose-md max-w-none md:px-8 text-primary">
           <MDXRenderer>{body.childMdx.body}</MDXRenderer>
         </article>
         <div className="mt-4">

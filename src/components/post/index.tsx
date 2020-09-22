@@ -28,7 +28,7 @@ function Post({
   showImg,
 }: PostProps) {
   const classesTitle = classnames(
-    "mt-2 text-3xl md:text-2xl leading-tight duration-150 font-display group-hover:text-primary",
+    "mt-2 text-3xl md:text-2xl leading-tight duration-150 font-display group-hover:text-accent",
     { "text-4xl md:text-6xl": featured }
   )
   const classesCover = classnames("object-cover w-full rounded md:h-auto", {
@@ -38,7 +38,7 @@ function Post({
   return (
     <article className="flex flex-col">
       <Link to={`/${slug}`} aria-label="Ir para a página da publicação">
-        <div className="group hover:text-primary">
+        <div className="group hover:text-accent">
           {image && (
             <Img
               fadeIn
@@ -55,7 +55,7 @@ function Post({
         {tags?.map(tag => (
           <Tag tag={tag} key={tag} />
         ))}
-        <h6 className="inline ml-4 tracking-widest text-gray-800 font-body">
+        <h6 className="inline ml-4 tracking-widest text-primary font-body">
           {dayjs(date).format("DD.MM.YYYY")}
         </h6>
       </div>

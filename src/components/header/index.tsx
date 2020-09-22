@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import classnames from "classnames"
 import { BsArrowLeft } from "react-icons/bs"
 import { Link } from "gatsby"
 import { motion, AnimatePresence } from "framer-motion"
+
+import ColorModeButton from "../color-mode"
 
 const ReturnArrow = () => (
   <Link
     to="/"
     aria-label="Retonar para página inicial"
     title="Retornar para página inicial"
+    className="p-4 duration-150 hover:text-accent"
   >
-    <div className="absolute duration-150 hover:text-primary">
-      <BsArrowLeft size="2em" />
-    </div>
+    <BsArrowLeft size="2em" />
   </Link>
 )
 
@@ -24,44 +25,30 @@ interface HeaderProps {
 }
 
 const Header = ({ minimalist, title, pageTitle, description }: HeaderProps) => {
-  const [showTitle, setShowTitle] = useState(true)
   const titleClasses = classnames(
-    "flex font-display md:inline-block px-10 font-normal text-center justify-center tracking-wide text-gray-900 duration-400 leading-tight",
+    "flex font-display md:inline-block px-10 font-normal text-center justify-center tracking-wide text-primary duration-400 leading-tight",
     {
       "text-lg lg:text-3xl max-w-3xl": minimalist,
       "text-2xl md:text-3xl lg:text-6xl": !minimalist,
     }
   )
   const subtitleClasses = classnames(
-    "text-gray-600 font-body font-light lowercase tracking-tighter leading-none mt-1 duration-400",
+    "text-secondary font-body font-light lowercase tracking-tighter leading-none mt-1 duration-400",
     { "text-xl": minimalist, "text-3xl": !minimalist }
   )
 
-  useEffect(() => {
-    function handleScroll() {
-      const currentScrollY = window.scrollY
-      if (currentScrollY > 5 && pageTitle) setShowTitle(false)
-      else setShowTitle(true)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [pageTitle, title])
-
   return (
     <div
-      className={classnames("bg-gray-100 z-10 w-full py-6 px-2 top-0", {
-        "container mx-auto sticky": minimalist,
-      })}
+      className={classnames(
+        "container mx-auto flex justify-between bg-primary relative z-10 w-full py-6 px-8 top-0 rounded-b-lg items-center",
+        { sticky: minimalist }
+      )}
     >
       {minimalist && <ReturnArrow />}
-      <div
-        className={classnames("text-center", {
-          "max-w-3xl mx-auto": minimalist,
-        })}
-      >
+      <div className={classnames("text-center max-w-3xl mx-auto")}>
         <AnimatePresence>
           <div>
-            {showTitle && (
+            {!pageTitle && (
               <motion.h1
                 className={titleClasses}
                 initial={{ opacity: 0, y: -15 }}
@@ -74,7 +61,7 @@ const Header = ({ minimalist, title, pageTitle, description }: HeaderProps) => {
                 </Link>
               </motion.h1>
             )}
-            {!showTitle && (
+            {pageTitle && (
               <motion.h1
                 className={titleClasses}
                 initial={{ opacity: 0, y: -15 }}
@@ -97,6 +84,7 @@ const Header = ({ minimalist, title, pageTitle, description }: HeaderProps) => {
           </motion.h5>
         )}
       </div>
+      <ColorModeButton />
     </div>
   )
 }

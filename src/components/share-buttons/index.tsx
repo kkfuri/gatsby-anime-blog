@@ -34,7 +34,7 @@ const ShareButtons = ({ showText = true, link }: ShareButtonsProps) => {
           href={i.baseUrl.concat(link)}
           target="_blank"
           rel="noreferrer"
-          className="p-1 duration-150 transform hover:text-primary hover:scale-105"
+          className="p-1 duration-150 transform hover:text-accent hover:scale-105"
         >
           <i.Component />
         </a>
