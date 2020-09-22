@@ -1,8 +1,28 @@
+:root {
+  @apply .light;
+}
+
+.dark {
+  --color-bg-primary: #2d3748;
+  --color-bg-secondary: #283141;
+  --color-text-primary: #f7fafc;
+  --color-text-secondary: #e2e8f0;
+  --color-text-accent: #eaaa00;
+}
+
+.light {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #edf2f7;
+  --color-text-primary: #2d3748;
+  --color-text-secondary: #4a5568;
+  --color-text-accent: #038cfc;
+}
+
 @tailwind base;
 @tailwind components;
 
 body {
-  @apply text-gray-800 bg-gray-100;
+  @apply text-primary bg-secondary;
 }
 
 h1 {
@@ -27,57 +47,6 @@ h5 {
 
 h6 {
   @apply tracking-widest uppercase;
-}
-
-.body-markdown > * {
-  @apply text-gray-800;
-  font-weight: 400;
-  line-height: 1.65;
-}
-
-.body-markdown p {
-  @apply font-body;
-  margin-bottom: 1.15rem;
-}
-
-.body-markdown h1,
-.body-markdown h2,
-.body-markdown h3,
-.body-markdown h4,
-.body-markdown h5 {
-  @apply font-bold;
-  margin: 2.75rem 0 1.05rem;
-  line-height: 1.15;
-}
-
-.body-markdown h1 {
-  margin-top: 0;
-  font-size: 1.802em;
-}
-
-.body-markdown h2 {
-  font-size: 1.602em;
-}
-
-.body-markdown h3 {
-  font-size: 1.424em;
-}
-
-.body-markdown h4 {
-  font-size: 1.266em;
-}
-
-.body-markdown h5 {
-  font-size: 1.125em;
-}
-
-.body-markdown a {
-  @apply text-primary underline;
-}
-
-.body-markdown small,
-.body-markdown .text_small {
-  font-size: 0.937em;
 }
 
 @tailwind utilities;
