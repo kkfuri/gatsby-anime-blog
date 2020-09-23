@@ -67,10 +67,11 @@ exports.createPages = ({ graphql, actions }) => {
     posts.forEach(({ node }, index) => {
       if (node.tags) {
         node.tags.forEach(tag => {
-          if (!postsByTag[tag]) {
-            postsByTag[tag] = []
+          const lowerTag = tag.toLowerCase()
+          if (!postsByTag[lowerTag]) {
+            postsByTag[lowerTag] = []
           }
-          postsByTag[tag].push(node)
+          postsByTag[lowerTag].push(node)
         })
       }
       createPage({
@@ -87,8 +88,9 @@ exports.createPages = ({ graphql, actions }) => {
     const tags = Object.keys(postsByTag)
 
     tags.forEach(tagName => {
-      const slug = stringToSlug(tagName)
-      const postsForEachTag = postsByTag[tagName]
+      const lowerTag = tagName.toLowerCase()
+      const slug = stringToSlug(lowerTag)
+      const postsForEachTag = postsByTag[lowerTag]
 
       createPage({
         path: `/tag/${slug}`,
