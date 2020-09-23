@@ -17,7 +17,6 @@ interface HomeProps {
 }
 
 function Home({ data }: HomeProps) {
-  console.log(data)
   const posts = data?.allContentfulBlogPost?.edges
   return (
     <Layout>
