@@ -19,7 +19,7 @@ interface TemplateProps {
 function TagTemplate({ pageContext }: TemplateProps) {
   const { posts, tagName } = pageContext
   return (
-    <Layout minimalist title={tagName} pageTitle={tagName}>
+    <Layout minimalist title={`Tag: ${tagName}`}>
       <div className="grid grid-cols-1 gap-4 my-20 md:gap-8 md:grid-cols-6">
         {posts?.map(post => {
           return (
