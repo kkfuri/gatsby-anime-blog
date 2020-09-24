@@ -11,9 +11,9 @@ const ReturnArrow = () => (
     to="/"
     aria-label="Retonar para página inicial"
     title="Retornar para página inicial"
-    className="p-4 duration-150 hover:text-accent"
+    className="p-2 text-lg duration-150 lg:text-2xl lg:p-4 hover:text-accent"
   >
-    <BsArrowLeft size="2em" />
+    <BsArrowLeft />
   </Link>
 )
 
@@ -26,9 +26,9 @@ interface HeaderProps {
 
 const Header = ({ minimalist, title, pageTitle, description }: HeaderProps) => {
   const titleClasses = classnames(
-    "flex font-display md:inline-block px-10 font-normal text-center justify-center tracking-wide text-primary duration-400 leading-tight",
+    "flex font-display md:inline-block font-normal text-center justify-center tracking-wide text-primary duration-400 leading-tight",
     {
-      "text-lg lg:text-3xl max-w-3xl": minimalist,
+      "text-sm lg:text-3xl max-w-3xl": minimalist,
       "text-2xl md:text-3xl lg:text-6xl": !minimalist,
     }
   )
@@ -40,7 +40,7 @@ const Header = ({ minimalist, title, pageTitle, description }: HeaderProps) => {
   return (
     <div
       className={classnames(
-        "container mx-auto flex justify-between bg-primary relative z-10 w-full py-6 px-8 top-0 rounded-b-lg items-center",
+        "container mx-auto flex justify-between bg-primary relative z-10 w-full py-3 lg:py-6 px-2 lg:px-8 top-0 rounded-b-lg items-center",
         { sticky: minimalist }
       )}
     >

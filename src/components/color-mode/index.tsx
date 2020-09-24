@@ -8,7 +8,7 @@ const ColorModeButton = () => {
   const { theme, toggleTheme } = useColorMode()
   return (
     <button
-      className="relative flex items-center justify-center w-10 h-10 p-4 text-2xl border-0 hover:text-accent focus:outline-none"
+      className="relative flex items-center justify-center w-6 h-6 p-3 text-sm border-0 lg:w-10 lg:h-10 lg:text-2xl lg:p-4 text-accent focus:outline-none"
       onClick={toggleTheme}
     >
       <AnimatePresence exitBeforeEnter>
