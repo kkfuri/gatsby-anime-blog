@@ -20,14 +20,14 @@ function Home({ data }: HomeProps) {
   const posts = data?.allContentfulBlogPost?.edges
   return (
     <Layout>
-      <div className="grid grid-cols-1 gap-4 my-20 xl:gap-8 xl:grid-cols-6">
+      <div className="grid grid-cols-1 gap-4 my-20 xl:gap-8 xl:grid-cols-3">
         {posts?.map((edge, index: number) => {
           const featuredPost = index % 9 === 0
           return (
             <div
               className={classnames({
-                "mb-8 xl:grid xl:col-span-4 xl:grid-rows-1 xl:row-span-2 xl:mb-0": featuredPost,
-                "xl:col-span-2": index % 9 !== 0,
+                "mb-8 xl:grid xl:col-span-2 xl:grid-rows-1 xl:row-span-2 xl:mb-0": featuredPost,
+                "xl:col-span-1": index % 9 !== 0,
               })}
               key={edge.node.id}
             >
